@@ -1,0 +1,26 @@
+method_name: abc
+seed: 11111
+data_dir: /opt/data
+checkpoint_dir: /opt/workdir/weights
+num_classes: 5
+
+embedding_model: bert
+fc_only: True
+use_pooler: True
+use_lexicon: False
+use_transformer: True
+
+max_length: 512
+dropout: 0.1
+weight_decay: 1e-4
+loss_weight: 0.5
+class_balance: 2.0
+batch_size: 32
+num_workers: 8
+num_epochs: 110
+learning_rate: 1e-3
+milestones: [40, 80]
+gamma: 0.1
+
+print_step: 70
+save_step: 10
