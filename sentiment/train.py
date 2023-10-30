@@ -1,5 +1,4 @@
 import os
-import math
 import time
 import random
 from pathlib import Path
@@ -47,8 +46,8 @@ class Runner:
         #     ],
         #     self.tokenizer,
         #     config)
-        train_dataset = ReviewsDataset(Path(data_dir) / "review_train_data_1.csv", self.tokenizer, config)
-        valid_dataset = ReviewsDataset(Path(data_dir) / "review_test_data.csv", self.tokenizer, config)
+        train_dataset = ReviewsDataset(Path(data_dir) / "review_train_data.csv", self.tokenizer, config)
+        valid_dataset = ReviewsDataset(Path(data_dir) / "review_valid_data.csv", self.tokenizer, config)
         print(f"Dataset size: {len(train_dataset)} {len(valid_dataset)}")
         self.train_loader = DataLoader(
             train_dataset,

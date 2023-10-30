@@ -1,17 +1,18 @@
 import re
 import json
 
+import click
 import torch
 import pandas as pd
-from fastchat.model import load_model, get_conversation_template, add_model_args
+from fastchat.model import load_model, get_conversation_template
 
 
+@click.command()
+@click.option("--root_dir", "The directory to CSV test file.")
 @torch.inference_mode()
-def main():
+def main(root_dir):
     # Load model
-    device = "cuda"
-    # root_dir = "/Users/tyler/workspace/oulu"
-    root_dir = "/home/tyler/projects/nlp"
+    device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
     temperature = 0.3
     model, tokenizer = load_model(
         "lmsys/vicuna-7b-v1.5",
@@ -54,7 +55,9 @@ def main():
         else:
             output_ids = output_ids[0][len(inputs["input_ids"][0]) :]
         outputs = tokenizer.decode(
-            output_ids, skip_special_tokens=True, spaces_between_special_tokens=False
+            output_ids,
+            skip_special_tokens=True,
+            spaces_between_special_tokens=False,
         )
 
         # Print results
@@ -62,7 +65,6 @@ def main():
         print(f"{conv.roles[1]}: {outputs}")
 
         rating = re.findall(r"\d+" + "\n", outputs)
-        print(rating)
         if len(rating) > 0:
             try:
                 rate = int(re.findall(r"\d+", rating[0])[0])

@@ -4,11 +4,11 @@ data_dir: /mnt/d/workspace/personal/master_lectures/521158S_nlp/project/nlp_1st_
 checkpoint_dir: /mnt/d/workspace/personal/master_lectures/521158S_nlp/project/weights
 num_classes: 5
 
-use_lexicon: False
 embedding_model: roberta
-fc_only: True
-use_pooler: True
-use_transformer: False
+fc_only: False
+use_pooler: False
+use_lexicon: False
+use_transformer: True
 
 dropout: 0.0
 max_length: 512

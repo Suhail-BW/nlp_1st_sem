@@ -4,9 +4,9 @@ data_dir: /opt/data
 checkpoint_dir: /opt/workdir/weights
 num_classes: 5
 
-embedding_model: bert
-fc_only: True
-use_pooler: True
+embedding_model: roberta
+fc_only: False
+use_pooler: False
 use_lexicon: False
 use_transformer: True
 
