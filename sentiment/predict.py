@@ -50,11 +50,10 @@ def main():
             rating, sentiment, strength = model(ids, masks)
             _, rating_max_indices = torch.max(rating.data, dim=1)
             outputs.append(rating_max_indices.detach().cpu().numpy())
-        break
 
     outputs = np.concatenate(outputs, axis=0) + 1
-    print(outputs.shape)
-    np.save(Path(pretrained_dir) / method_name / "outputs____.npy", outputs)
+    print(outputs.shape, outputs[:1])
+    np.save(Path(pretrained_dir) / method_name / "outputs.npy", outputs)
 
 
 if __name__ == "__main__":
